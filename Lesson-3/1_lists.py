@@ -84,6 +84,14 @@ mylist = [2, 4, 6, 8]
 mylist[1:4] = [1, 3, 5]
 print(mylist)  # [2, 1, 3, 5]
 
+# Склейка списков
+mylist = [1, 2, 3] + [4, 5, 6]
+print(mylist)  # [1, 2, 3, 4, 5, 6]
+
+# Склеивать можно только одинаковые типы данных
+# mylist = (1, 2, 3) + [4, 5, 6]  # TypeError: can only concatenate tuple (not "list") to tuple
+
+
 # Методы списков
 # Список нечетных чисел
 mylist = [1, 3, 5]
@@ -168,3 +176,6 @@ print(elem)  # l
 mylist = 'H e l l o W o r l d !'.split()
 mylist.clear()
 print(mylist)  # []
+
+# Повторение
+print(['Hello'] * 3)  # ['Hello', 'Hello', 'Hello']

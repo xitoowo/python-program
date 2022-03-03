@@ -9,12 +9,12 @@ print(f'str[0] = {str[0]}')  # Вывод: H
 print(f'str[-1] = {str[-1]}')  # Вывод: !
 
 # TypeError: string indices must be integers
-print(f'str[0.5] = {str[0.5]}')
+# print(f'str[0.5] = {str[0.5]}')
 
 # IndexError: string index out of range. Выход за пределы строки
-print(f'str[15] = {str[15]}')
+# print(f'str[15] = {str[15]}')
 # IndexError: string index out of range. Выход за пределы строки
-print(f'str[-15] = {str[-15]}')
+# print(f'str[-15] = {str[-15]}')
 
 # Стрез со второго элемента по четвертый
 # Отсчет начинается с 0
