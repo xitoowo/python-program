@@ -5,7 +5,6 @@ import functools
 class Number:
     def __init__(self, value):
         self.value = value
-        print(type(self.value))
 
     @staticmethod
     def to_string(first_number, second_number):
@@ -29,6 +28,9 @@ class Number:
             return self.value == other.value
         if isinstance(other, int):
             return self.value == other
+        if isinstance(other, list):
+            result = [int(x) for x in str(self.value)]
+            return result == other
         raise TypeError('Тип данных не поддерживается')
 
     def __lt__(self, other):
@@ -47,10 +49,27 @@ class Number:
             return self.value > other
         raise TypeError('Тип данных не поддерживается')
 
+    def __le__(self, other):
+        # Определеяет поведение оператора <=
+        if isinstance(other, Number):
+            return self.value <= other.value
+        if isinstance(other, int):
+            return self.value <= other
+        raise TypeError('Тип данных не поддерживается')
+
+    def __ge__(self, other):
+        # Определяет поводение оператора >=
+        if isinstance(other, Number):
+            return self.value >= other.value
+        if isinstance(other, int):
+            return self.value >= other
+        raise TypeError('Тип данных не поддерживается')
+
 
 number_1 = Number(4586)
 number_2 = Number(4789)
 print(number_1)
+print(number_1 == [4, 5, 8, 6])
 print(number_1 == number_2)
 print(number_1 < number_2)
 print(number_1 > 0)
