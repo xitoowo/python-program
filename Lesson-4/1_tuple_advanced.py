@@ -20,7 +20,7 @@ pow_list = tuple(x ** 2 for x in range(10))
 print(pow_list)  # (0, 1, 4, 9, 16, 25, 36, 49, 64, 81)
 
 # Пример работы генератора кортежей if
-pow_list =tuple(x ** 2 for x in range(10) if x % 2 == 0)
+pow_list = tuple(x ** 2 for x in range(10) if x % 2 == 0)
 print(pow_list)  # (0, 4, 16, 36, 64)
 
 # Пример работы генератора словарей в кортеже
