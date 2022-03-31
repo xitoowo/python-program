@@ -1,77 +1,35 @@
-# Магические или dunder методы
-import functools
+# Обработка данных из файла
+import csv
 
 
-class Number:
-    def __init__(self, value):
-        self.value = value
+class Car:
+    car_list = []
 
-    @staticmethod
-    def to_string(first_number, second_number):
-        return str(first_number) + str(second_number)
-
-    def update(self, index, other):
-        number_list = [x for x in str(self.value)]
-        number_list[index] = other
-        result = functools.reduce(Number.to_string, number_list)
-        self.value = int(result)
+    def __init__(self, name, mpg, year, status):
+        # self.name, self.mpg, self.year, self.status = name, mpg, year, status
+        self.name = name
+        self.mpg = mpg
+        self.year = year
+        self.status = status
+        self.__class__.car_list.append(self)
+        # Car.car_list.append(self)
 
     def __str__(self):
-        return str(self.value)
+        return f"Name: {self.name}, Year: {self.year}"
 
-    def __repr__(self):
-        return f'Number({self.value})'
-
-    def __eq__(self, other):
-        # Определяет поведение оператора ==
-        if isinstance(other, Number):
-            return self.value == other.value
-        if isinstance(other, int):
-            return self.value == other
-        if isinstance(other, list):
-            result = [int(x) for x in str(self.value)]
-            return result == other
-        raise TypeError('Тип данных не поддерживается')
-
-    def __lt__(self, other):
-        # Определяет поведение оператора <
-        if isinstance(other, Number):
-            return self.value < other.value
-        if isinstance(other, int):
-            return self.value < other
-        raise TypeError('Тип данных не поддерживается')
-
-    def __gt__(self, other):
-        # Определяет поведение оператора >
-        if isinstance(other, Number):
-            return self.value > other.value
-        if isinstance(other, int):
-            return self.value > other
-        raise TypeError('Тип данных не поддерживается')
-
-    def __le__(self, other):
-        # Определеяет поведение оператора <=
-        if isinstance(other, Number):
-            return self.value <= other.value
-        if isinstance(other, int):
-            return self.value <= other
-        raise TypeError('Тип данных не поддерживается')
-
-    def __ge__(self, other):
-        # Определяет поводение оператора >=
-        if isinstance(other, Number):
-            return self.value >= other.value
-        if isinstance(other, int):
-            return self.value >= other
-        raise TypeError('Тип данных не поддерживается')
+    def list_view(self):
+        return [self.name, self.mpg, self.year, self.status]
 
 
-number_1 = Number(4586)
-number_2 = Number(4789)
-print(number_1)
-print(number_1 == [4, 5, 8, 6])
-print(number_1 == number_2)
-print(number_1 < number_2)
-print(number_1 > 0)
-print(number_1 > False)
-print(number_1 > number_2)
+with open('cars.csv', 'r') as cars, open('car_status.csv') as car_statuses:
+    car_reader = csv.reader(cars)
+    status_reader = csv.reader(car_statuses)
+    for car, status in zip(car_reader, status_reader):
+        name, mpg, year = car
+        stat = status[0]
+        Car(name, mpg, year, stat)
+
+with open('report.csv', 'w', newline='') as report:
+    report_writer = csv.writer(report)
+    for car in Car.car_list:
+        report_writer.writerow(car.list_view())
