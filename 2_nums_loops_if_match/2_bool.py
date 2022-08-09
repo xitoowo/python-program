@@ -14,7 +14,7 @@ print(False == 1)  # Вывод: False
 # Можно сравнивать с другими числами
 print(True > 0)  # Вывод: True
 print(False <= 0)  # Вывод: True
-print(True > 2)  # Вывод: True
+print(True > 2)  # Вывод: False
 print(False <= 10)  # Вывод: True
 
 # Bool с другими значениями

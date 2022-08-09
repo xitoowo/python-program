@@ -1,6 +1,4 @@
 class Strict:
-    __slots__ = ('__init__', 'x', 'y', '__repr__')
-
     def __init__(self, x, y):
         self.x = x
         self.y = y

@@ -4,11 +4,8 @@ from random import randint
 # Генератор ip
 def ip_generator():
     for _ in range(10):
-        a = randint(0, 255)
-        b = randint(0, 255)
-        c = randint(0, 255)
-        d = randint(0, 255)
-        ip = f"{a}.{b}.{c}.{d}"
+        data = [randint(0, 255) for x in range(4)]
+        ip = "{}.{}.{}.{}".format(*data)
         yield ip
 
 

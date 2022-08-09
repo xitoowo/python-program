@@ -30,7 +30,7 @@ print(f"After deleting file {os.path.exists('tmp.txt')}")
 txt_files = list(Path('.').glob("*.txt"))
 print("Txt files:", txt_files)
 for file in txt_files:
-    print(file.absolute())  # C:\Users\*\PycharmProjects\python-program\Lesson-8\example.txt
+    print(file.absolute())  # C:\Users\*\PycharmProjects\python-program\8_files\example.txt
 
 # Шаблон поиска glob
 # Как вариант, также удобно использовать модуль glob напрямую.

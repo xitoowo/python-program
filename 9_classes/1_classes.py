@@ -6,12 +6,15 @@ class Test:
 
 # Класс сотрудник
 class Employee:
-    # __init__ инциализатор класса
+    # __init__ Инциализатор класса
     def __init__(self, name, age, position, place):
         self.name = name  # атрибут экземляра класса
         self.age = age
         self.position = position
         self.place = place
+
+    def __del__(self):  # Финализатор класса
+        print(f'Удаление экземпляра: {self}')
 
 
 developer = Employee(name='John', age=40, position='Developer', place='4A')
