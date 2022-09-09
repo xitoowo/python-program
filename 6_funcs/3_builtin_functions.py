@@ -60,3 +60,33 @@ def func(a, b):
 a = map(func, [2, 4, 5], [1, 2, 3])
 print(a)  # <map object at 0x00000222719C4F10>
 print(list(a))  # [3, 6, 8]
+
+# Факториал с помощью reduce
+#
+nums = [1, 2, 3, 4, 5]
+
+
+def add_my(a, b):
+    return a * b
+
+
+result = reduce(add_my, nums)
+print(result)
+
+
+def square(number):
+    return number ** 2
+
+
+nums = [2, 4, 6, 8]
+result = list(map(square, nums))
+print(result)
+
+abs_values = list(map(abs, [-1, -2, -3, 0]))
+print(abs_values)
+input_data = '1 2 3 4 5 6'.split(' ')
+floated = list(map(int, input_data))
+print(floated)
+words = ['hello', 'world', 'hi', 'peace']
+result = list(map(len, words))
+print(result)

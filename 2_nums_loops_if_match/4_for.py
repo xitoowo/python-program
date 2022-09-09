@@ -22,7 +22,7 @@ for index in range(0, 10, 2):
 print()
 # Отрицательный
 # Для этого необходимо указать конец < начала
-for index in range(20, 10):
+for index in range(20, 10, -1):
     print(index)  # Вывод:  20 18 16 14 12
 print()
 for index in range(20, 10, -2):
