@@ -48,9 +48,11 @@ def factorial(n):
     if n == 0 or n == 1:
         return 1
     else:
-        return n * factorial(n-1)
+        return n * factorial(n - 1)
+
 
 factorial(5)  # 120
+
 
 def factorial(n):
     match n:
@@ -59,7 +61,10 @@ def factorial(n):
         case _:
             return n * factorial(n - 1)
 
+
 factorial(5)
+
+
 #
 # Обратите внимание на пару моментов: конструкция начинается с выражения match n, это означает, что можно делать разные
 # вещи в зависимости от того, какое значение передается в n. В конструкции также присутствуют операторы case,
@@ -90,6 +95,7 @@ def normalise_colour_info(colour):
             raise ValueError("Unknown colour info.")
     return (name, (r, g, b, a))
 
+
 print(normalise_colour_info((240, 248, 255)))
 # ('', (240, 248, 255, 0))
 print(normalise_colour_info((240, 248, 255, 0)))
@@ -97,6 +103,8 @@ print(normalise_colour_info((240, 248, 255, 0)))
 print(normalise_colour_info(("AliceBlue", (240, 248, 255))))
 # ('AliceBlue', (240, 248, 255, 0))
 print(normalise_colour_info(("AliceBlue", (240, 248, 255, 0.3))))
+
+
 # ('AliceBlue', (240, 248, 255, 0.3))
 
 # Обратите внимание, что каждый case содержит выражение, подобное левой части присвоения с распаковкой,
@@ -130,8 +138,9 @@ def normalise_colour_info(colour):
             r, g, b, a = values
     return (name, (r, g, b, a))
 
+
 # Версия функции нормализации цвета становится еще лучше, если добавить проверку типов, запрашивая конкретные значения:
-def normalise_colour_info(colour):
+def normalise_colour_info2(colour):
     match colour:
         case (int(r), int(g), int(b)):
             name = ""
@@ -144,11 +153,14 @@ def normalise_colour_info(colour):
             pass
         case _:
             raise ValueError("Unknown colour info.")
-    return (name, (r, g, b, a)))
+    return (name, (r, g, b, a))
+
 
 print(normalise_colour_info(("AliceBlue", (240, 248, 255))))
 # ('AliceBlue', (240, 248, 255, 0))
 print(normalise_colour_info2(("Red", (255, 0, "0"))))
+
+
 # ValueError: Unknown colour info.
 # Соответствие структуре объектов Python.
 # Конструкция match/case также может использоваться для сопоставления структуры экземпляров класса.
@@ -157,6 +169,7 @@ print(normalise_colour_info2(("Red", (255, 0, "0"))))
 class Point:
     x: int
     y: int
+
 
 # Теперь надо написать небольшую функцию, которая берет Point() и записывает небольшое описание того,
 # где находится точка. Можно использовать сопоставление с образцом match/case для захвата значений атрибутов x и y
@@ -182,6 +195,7 @@ def describe_point(point):
 
     return "Точка находится " + desc
 
+
 print(describe_point(Point(0, 0)))
 # Точка находится в начале координат
 print(describe_point(Point(3, 0)))
@@ -189,6 +203,8 @@ print(describe_point(Point(3, 0)))
 print(describe_point(Point(3, -3)))
 # Точка находится вдоль линии x = -y, где x = 3 и y = -3
 print(describe_point(Point(1, 2)))
+
+
 # Точка находится в позиции (1, 2)
 
 # Обратите внимание, что для создания нового шаблона экземпляра Point(), приходится указывать, какой аргумент был x,
@@ -202,6 +218,7 @@ class Point:
     __match_args__ = ["x", "y"]
     x: int
     y: int
+
 
 def describe_point(point):
     """Удобочитаемое описание положения точки."""
@@ -217,6 +234,7 @@ def describe_point(point):
             desc = f"в позиции {point}"
 
     return "Точка находится " + desc
+
 
 print(describe_point(Point(0, 0)))
 # Точка находится в начале координат
@@ -251,6 +269,8 @@ match points:
 
 head, *body, tail = range(10)
 print(head, body, tail)
+
+
 # 0 [1, 2, 3, 4, 5, 6, 7, 8] 9
 #
 # Здесь *body сообщает Python, что нужно вставлять в переменную body все, что не входит в head или tail.
@@ -277,10 +297,12 @@ def rule_substitution(seq):
         seq = tail
     return new_seq
 
+
 seq = ["1"]
 for _ in range(10):
     seq = rule_substitution(seq)
     print("".join(seq))
+
 
 # 11
 # 21
@@ -296,13 +318,14 @@ for _ in range(10):
 # Распаковка словаря и конструкция match/case.
 # Точно так же мы можем использовать ** для сопоставления остатка словаря. Но сначала посмотрим,
 # каково поведение match/case при сопоставлении словарей:
+def unpack():
+    d = {0: "oi", 1: "uno"}
+    match d:
+        case {0: "oi"}:
+            return True
+        case _:
+            return False
 
-d = {0: "oi", 1: "uno"}
-match d:
-    case {0: "oi"}:
-        return True
-    case _:
-        return False
 
 # True
 
@@ -341,16 +364,19 @@ match d:
 
 # Ключ 0 сопоставлен с `oi` и ключ 1 с `uno`
 
-Именованные константы (перечисления) и конструкция match/case.
-В шаблонах могут использоваться именованные константы (перечисления).
-Эти именованные константы должны иметь имена, разделенные точками, чтобы константа не интерпретировалась
-как переменная захвата:
+# Именованные константы (перечисления) и конструкция match/case.
+# В шаблонах могут использоваться именованные константы (перечисления).
+# Эти именованные константы должны иметь имена, разделенные точками, чтобы константа не интерпретировалась
+# как переменная захвата:
 
 from enum import Enum
+
+
 class Color(Enum):
     RED = 0
     GREEN = 1
     BLUE = 2
+
 
 match color:
     case Color.RED:
@@ -359,7 +385,6 @@ match color:
         print("Трава зеленая")
     case Color.BLUE:
         print("Небо синее")
-
 
 # Ключевые особенности оператора match/case.
 # Как и при распаковке, шаблоны кортежей и списков (pattern в операторе case) имеют одно и то же значение и фактически
